@@ -1,0 +1,8 @@
+Shuffle-Cards\%2Fapi%2Fdeck%2Fnew%2Fshuffle%2F.xml
+Draw-Cards\Draw-Cards.xml
+Add-to-Pile\Add.xml
+Listing-Cards\List.xml
+SecurityTest.xml
+End-to-End-Test-Suite\End-to-End-Test-Case.xml
+Draw-Cards-Test-Suite\Draw-Cards-Test-Case1.xml
+Add-to-Pile-Test-Suite\Add-to-Pile-Test-Case.xml

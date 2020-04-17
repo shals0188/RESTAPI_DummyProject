@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="0fe1d73c-dc8b-4cb2-b51d-63a715c884d0" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Add to Pile Test Case" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="0fe1d73c-dc8b-4cb2-b51d-63a715c884d0fileName">Add-to-Pile-Test-Case</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="restrequest" name="REST Request" id="7c35483c-99ad-4e6a-9945-d4a3ad37df3c">
+    <con:settings/>
+    <con:config service="Add to Pile" resourcePath="/api/deck/{deck_id}/pile/{pile_name}/add/" methodName="Add" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="d8b4de43-aa9f-46e0-86e0-9a5d3b469b92" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/qp386gtdxk2r/pile/add/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="1967190b-e61a-4552-8b98-fb0f86df8920" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="ecfc5dd6-3543-40bf-8cc2-892eee3e0e9e" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="cards" value="${#[Draw Cards Test Suite#Draw Cards Test Case1#REST Request]#Response#$['cards'][0]['code']}"/>
+          <con:entry key="deck_id" value="${#[Shuffle Cards Test Suite#Shuffle Cards Test Case#REST Request]#Response#$['deck_id']}"/>
+          <con:entry key="pile_name" value="Discard"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>cards</con:entry>
+          <con:entry>pile_name</con:entry>
+          <con:entry>deck_id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

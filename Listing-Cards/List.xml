@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="List" path="/api/deck/{deck_id}/pile/{pile_name}/list/" id="53fa29a5-7442-492d-bea8-9f406101904d" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="53fa29a5-7442-492d-bea8-9f406101904dfileName">List</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter>
+      <con:name>deck_id</con:name>
+      <con:style>TEMPLATE</con:style>
+    </con:parameter>
+    <con:parameter>
+      <con:name>pile_name</con:name>
+      <con:style>TEMPLATE</con:style>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="List" id="19c66cfb-52bc-4a33-843c-61db27008552" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>deck_id</con:name>
+        <con:value/>
+        <con:style>TEMPLATE</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>pile_name</con:name>
+        <con:value/>
+        <con:style>TEMPLATE</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:list="https://deckofcardsapi.com/api/deck/qp386gtdxk2r/pile/discard/list/">list:Response</con:element>
+    </con:representation>
+    <con:request name="Request 1" id="0c60a25c-0a7e-4e26-97b0-9163de6f9bd9" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://deckofcardsapi.com/api/deck/qp386gtdxk2r/pile/discard/list/</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="deck_id" value="qp386gtdxk2r"/>
+        <con:entry key="pile_name" value="discard"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>deck_id</con:entry>
+        <con:entry>pile_name</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+</con:resource>
