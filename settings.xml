@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="fcf11704-b329-4d85-b0af-197cbe7fce77" created="3.2.0" activeEnvironment="Default environment" name="Deck of Cards" updated="3.2.0" encryptionMode="Not encrypted" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="fcf11704-b329-4d85-b0af-197cbe7fce77" created="3.2.0" activeEnvironment="Default environment" name="Deck of Cards" updated="3.2.0" encryptionMode="Not encrypted" resourceRoot="" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
   <con:settings>
     <con:setting id="fcf11704-b329-4d85-b0af-197cbe7fce77fileName">Deck-of-Cards</con:setting>
   </con:settings>
