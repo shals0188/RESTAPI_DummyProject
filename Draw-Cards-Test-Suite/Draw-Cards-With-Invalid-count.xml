@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="565c164e-07f1-49b0-b900-926dcd480d76" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Draw Cards With Invalid count" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="565c164e-07f1-49b0-b900-926dcd480d76fileName">Draw-Cards-With-Invalid-count</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="restrequest" name="REST Request" id="070a5848-3e6b-4532-b962-da5051f0e3b8">
+    <con:settings/>
+    <con:config service="Draw Cards" resourcePath="/api/deck/{deck_id}/draw/" methodName="Draw" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="4b04896f-c8e6-4800-ac2d-ff0494882c87" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/%3C%3Cdeck_id%3E%3E/draw/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="c2bac04a-9bee-4d9b-ae99-678961defdc7" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>500</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="abc7a5d1-7c39-4e63-8176-6b3014e12877" name="Response SLA">
+          <con:configuration>
+            <SLA>300</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="count" value="j"/>
+          <con:entry key="deck_id" value="${#[End-to-End Test Suite#End-to-End Test Case#Shuffle]#Response#$['deck_id']}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>count</con:entry>
+          <con:entry>deck_id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

@@ -154,7 +154,7 @@ else
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
           <con:entry key="count" value="${#TestSuite#drawn_cards}"/>
-          <con:entry key="deck_id" value="qu6ulf8f7p3i"/>
+          <con:entry key="deck_id" value="qb09krzwdnuy"/>
         </con:parameters>
         <con:parameterOrder>
           <con:entry>count</con:entry>
@@ -230,8 +230,8 @@ else
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="cards" value="3S"/>
-          <con:entry key="deck_id" value="qu6ulf8f7p3i"/>
+          <con:entry key="cards" value="5D"/>
+          <con:entry key="deck_id" value="qb09krzwdnuy"/>
           <con:entry key="pile_name" value="discard"/>
         </con:parameters>
         <con:parameterOrder>
@@ -285,7 +285,7 @@ else
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters>
-          <con:entry key="deck_id" value="qu6ulf8f7p3i"/>
+          <con:entry key="deck_id" value="qb09krzwdnuy"/>
           <con:entry key="pile_name" value="discard"/>
         </con:parameters>
         <con:parameterOrder>

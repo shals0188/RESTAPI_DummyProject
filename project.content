@@ -4,5 +4,7 @@ Add-to-Pile\Add.xml
 Listing-Cards\List.xml
 SecurityTest.xml
 End-to-End-Test-Suite\End-to-End-Test-Case.xml
-Draw-Cards-Test-Suite\Draw-Cards-Test-Case1.xml
+Draw-Cards-Test-Suite\Draw-Cards-With-Invalid-count.xml
+Draw-Cards-Test-Suite\Draw-Cards-With-Invalid-deck_id.xml
+Draw-Cards-Test-Suite\Draw-Cards-With-Valid-Values.xml
 Add-to-Pile-Test-Suite\Add-to-Pile-Test-Case.xml

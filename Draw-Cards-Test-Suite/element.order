@@ -1,1 +1,3 @@
-Draw-Cards-Test-Case1.xml
+Draw-Cards-With-Invalid-count.xml
+Draw-Cards-With-Invalid-deck_id.xml
+Draw-Cards-With-Valid-Values.xml
