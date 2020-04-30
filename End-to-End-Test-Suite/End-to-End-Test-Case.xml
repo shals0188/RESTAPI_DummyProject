@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="b945e282-4172-451c-976f-35603f285787" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="End-to-End Test Case" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="b945e282-4172-451c-976f-35603f285787fileName">End-to-End-Test-Case</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="restrequest" name="Shuffle" id="3afc4609-8d4d-43c2-9995-fb150172027e">
+    <con:settings/>
+    <con:config service="Shuffle Cards" resourcePath="/api/deck/new/shuffle/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Shuffle" id="8e1d426b-3c0b-49dc-90f8-2062b69753c2" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/new/shuffle/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d900a0fd-78ec-4b65-be14-9d5be7b98c27" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="b6bc95d0-b0d7-444a-996e-a306ce74c0e2" name="Response SLA">
+          <con:configuration>
+            <SLA>5000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="b8d705f1-86ec-45ce-b578-83dd1f6a9bce" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+
+def response_message=messageExchange.responseContent
+def response_json=new JsonSlurper().parseText(response_message)
+
+
+def n=(context.expand('${#TestSuite#count}')).toInteger()
+ //int n1=n.toInteger()
+log.info ("total no of deck count is: ${n}")
+
+def basic_cards=(context.expand('${#TestSuite#cards_value}')).toInteger()
+ //int n1=n.toInteger()
+log.info ("total no of basic cards: ${basic_cards}")
+
+total=(n*basic_cards).toInteger()
+
+
+def remain=(response_json.remaining).toInteger()
+log.info ("total remaining in response: ${remain}")
+
+if(remain==basic_cards)
+{
+	assert true
+}
+else
+{
+	log.info("incorrect no. of remaining cards: ${remain}")
+	assert false
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="deck_count" value="${#TestSuite#count}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>deck_count</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Property Transfer- Deck Id" id="9ed318a2-6f91-48e2-b5bf-8a1edc55bbb0">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>deck_id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Shuffle</con:sourceStep>
+        <con:sourcePath>$['deck_id']</con:sourcePath>
+        <con:targetType>deck_id</con:targetType>
+        <con:targetStep>Draw</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:targetTransferType>XPATH</con:targetTransferType>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Draw" id="f3a4b534-a59d-48be-a1d2-fc47d9cbddb2">
+    <con:settings/>
+    <con:config service="Draw Cards" resourcePath="/api/deck/{deck_id}/draw/" methodName="Draw" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Draw" id="4b04896f-c8e6-4800-ac2d-ff0494882c87" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request>j8exnoxf0tg7</con:request>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/%3C%3Cdeck_id%3E%3E/draw/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="73d11472-0915-4f74-bbb4-a380aef8a0ee" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="ea867830-84c0-425c-9153-4b25c8bcb8c2" name="Response SLA">
+          <con:configuration>
+            <SLA>5000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="f5ace3d5-469d-467e-b6ec-67cf5d62009a" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import groovy.json.JsonSlurper
+
+def response_message=messageExchange.responseContent
+def response_json=new JsonSlurper().parseText(response_message)
+
+def n=(context.expand('${#TestSuite#count}')).toInteger()
+ //int n1=n.toInteger()
+log.info ("total no of deck count is: ${n}")
+
+def basic_cards=(context.expand('${#TestSuite#cards_value}')).toInteger()
+ //int n1=n.toInteger()
+log.info ("total no of basic cards: ${basic_cards}")
+
+def drawn_cards=(context.expand('${#TestSuite#drawn_cards}')).toInteger()
+ //int n1=n.toInteger()
+log.info ("total no of drawn cards: ${drawn_cards}")
+
+total=(n*basic_cards)-(drawn_cards)
+
+
+def remain=response_json.remaining
+log.info ("total remaining in response: ${remain}")
+
+
+if(remain==total)
+{
+	assert true
+}
+else
+{
+	log.info("incorrect no. of remaining cards: ${remain}")
+	assert false
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="count" value="${#TestSuite#drawn_cards}"/>
+          <con:entry key="deck_id" value="lkmzh4833y7l"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>count</con:entry>
+          <con:entry>deck_id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Property Transfer - Card &amp; Deck Id" id="018b2d34-6631-464a-8d19-785ba5fc76de">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>cards</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Draw</con:sourceStep>
+        <con:sourcePath>$['cards'][0]['code']</con:sourcePath>
+        <con:targetType>cards</con:targetType>
+        <con:targetStep>Add to Pile</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>deck_id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Draw</con:sourceStep>
+        <con:sourcePath>$['deck_id']</con:sourcePath>
+        <con:targetType>deck_id</con:targetType>
+        <con:targetStep>Add to Pile</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>card</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Draw</con:sourceStep>
+        <con:sourcePath>$['cards'][0]['code']</con:sourcePath>
+        <con:targetType>cards</con:targetType>
+        <con:targetStep>Add to Pile</con:targetStep>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Add to Pile" id="0b9c1635-7185-4da6-a8dc-d9720c5a464e">
+    <con:settings/>
+    <con:config service="Add to Pile" resourcePath="/api/deck/{deck_id}/pile/{pile_name}/add/" methodName="Add" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Add to Pile" id="d8b4de43-aa9f-46e0-86e0-9a5d3b469b92" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/qp386gtdxk2r/pile/add/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="57dba90e-9cc6-420c-9b6c-48eeabd33e1e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="0f92081d-760d-4197-afd3-f302b500805f" name="Script Assertion">
+          <con:configuration>
+            <scriptText>log.info "Add to pile"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="cards" value="AD"/>
+          <con:entry key="deck_id" value="lkmzh4833y7l"/>
+          <con:entry key="pile_name" value="discard"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>cards</con:entry>
+          <con:entry>pile_name</con:entry>
+          <con:entry>deck_id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Property Transfer- Deck Id 2" id="d1586fba-2d90-4cc2-a261-bbde66dee914">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>deck_id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Add to Pile</con:sourceStep>
+        <con:sourcePath>$['deck_id']</con:sourcePath>
+        <con:targetType>deck_id</con:targetType>
+        <con:targetStep>Listing Cards</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Listing Cards" id="9d9127af-3986-4765-bc64-c41645ee1fc3">
+    <con:settings/>
+    <con:config service="Listing Cards" resourcePath="/api/deck/{deck_id}/pile/{pile_name}/list/" methodName="List" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Listing Cards" id="0c60a25c-0a7e-4e26-97b0-9163de6f9bd9" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/qp386gtdxk2r/pile/discard/list/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="06cc0572-4a5f-4123-a2fd-5dedb297d7d9" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="9bd9c273-96ef-4ddd-9d82-a2fd372a798d" name="Response SLA">
+          <con:configuration>
+            <SLA>300</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="9cc592c6-2528-48ad-95ee-292406b37371" name="Script Assertion">
+          <con:configuration>
+            <scriptText>log.info "Listing Cards"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="deck_id" value="lkmzh4833y7l"/>
+          <con:entry key="pile_name" value="discard"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>deck_id</con:entry>
+          <con:entry>pile_name</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>018b2d34-6631-464a-8d19-785ba5fc76de</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>d1586fba-2d90-4cc2-a261-bbde66dee914</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="37bdd01a-ce2e-48f4-8147-b947bde15920" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Draw Cards With Valid Values" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="37bdd01a-ce2e-48f4-8147-b947bde15920fileName">Draw-Cards-With-Valid-Values</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="REST Request" id="73786b8f-e84f-4b3d-a236-cc8311748326">
+    <con:settings/>
+    <con:config service="Draw Cards" methodName="Draw" resourcePath="/api/deck/{deck_id}/draw/" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="3380e6f3-9190-47ef-b269-e0e514ff4042" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://deckofcardsapi.com/api/deck/d59w8xd32jjq/draw/</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d81a2d1b-acc9-4038-b84e-611cfaf5f9d5" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="c7cd1fb9-e7f3-47b4-9f2a-a53dc1c5065b" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="count" value="${#[End-to-End Test Suite]#count}"/>
+          <con:entry key="deck_id" value="${#[End-to-End Test Suite#End-to-End Test Case#Shuffle]#Response#$['deck_id']}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

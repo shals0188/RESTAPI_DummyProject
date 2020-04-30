@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xsi:type="con:RestService" id="addb1e3d-4943-467a-8d81-77efd5eab2ca" wadlVersion="http://wadl.dev.java.net/2009/02" name="Listing Cards" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="addb1e3d-4943-467a-8d81-77efd5eab2cafileName">Listing-Cards</con:setting>
+  </con:settings>
+  <con:definitionCache type="TEXT" rootPart=""/>
+  <con:endpoints>
+    <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+  </con:endpoints>
+</con:interface>

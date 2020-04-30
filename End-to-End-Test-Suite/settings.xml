@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="d3a4984f-cb51-42cf-8097-07fd6bd23854" name="End-to-End Test Suite" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="d3a4984f-cb51-42cf-8097-07fd6bd23854fileName">End-to-End-Test-Suite</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties>
+    <con:property>
+      <con:name>count</con:name>
+      <con:value>1</con:value>
+    </con:property>
+    <con:property>
+      <con:name>cards_value</con:name>
+      <con:value>52</con:value>
+    </con:property>
+    <con:property>
+      <con:name>drawn_cards</con:name>
+      <con:value>2</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+</con:testSuite>

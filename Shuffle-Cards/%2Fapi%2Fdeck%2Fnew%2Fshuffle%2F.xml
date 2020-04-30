@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="" path="/api/deck/new/shuffle/" id="9b691095-ac63-4c3a-8ff7-00497a93e140" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="9b691095-ac63-4c3a-8ff7-00497a93e140fileName">%2Fapi%2Fdeck%2Fnew%2Fshuffle%2F</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="" id="dbbd5e30-ceb0-41c3-b45e-ef29ca6f820e" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>deck_count</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:shuf="https://deckofcardsapi.com/api/deck/new/shuffle/">shuf:Response</con:element>
+    </con:representation>
+    <con:representation type="FAULT">
+      <con:mediaType>text/html</con:mediaType>
+      <con:status>500</con:status>
+      <con:params/>
+      <con:element>h1</con:element>
+    </con:representation>
+    <con:request name="Request 1" id="8e1d426b-3c0b-49dc-90f8-2062b69753c2" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://deckofcardsapi.com/api/deck/new/shuffle/</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="deck_count" value="1"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>deck_count</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+</con:resource>

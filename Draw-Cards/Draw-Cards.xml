@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="Draw Cards" path="/api/deck/{deck_id}/draw/" id="f77b78f6-b497-40e7-9a4c-10d09acfcdf0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="f77b78f6-b497-40e7-9a4c-10d09acfcdf0fileName">Draw-Cards</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter>
+      <con:name>deck_id</con:name>
+      <con:style>TEMPLATE</con:style>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="Draw" id="c644dfc5-b2c8-4bf8-b0e2-a768adbfd4d4" method="GET">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>count</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>deck_id</con:name>
+        <con:value/>
+        <con:style>TEMPLATE</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="FAULT">
+      <con:mediaType>text/html</con:mediaType>
+      <con:status>404 500</con:status>
+      <con:params/>
+      <con:element>html</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:draw="https://deckofcardsapi.com/api/deck/%3C%3Cdeck_id%3E%3E/draw/">draw:Response</con:element>
+    </con:representation>
+    <con:request name="Request 1" id="4b04896f-c8e6-4800-ac2d-ff0494882c87" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://deckofcardsapi.com</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://deckofcardsapi.com/api/deck/%3C%3Cdeck_id%3E%3E/draw/</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters>
+        <con:entry key="count" value="1"/>
+        <con:entry key="deck_id" value="qp386gtdxk2r"/>
+      </con:parameters>
+      <con:parameterOrder>
+        <con:entry>count</con:entry>
+        <con:entry>deck_id</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+</con:resource>
